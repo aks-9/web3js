@@ -1,0 +1,75 @@
+****TO INTERACT WITH BLOCKCHAIN****
+
+let Web3= require("web3");
+
+let web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
+
+web3
+
+Now we can control our Ganache through Web3
+
+
+*Fetching the balance of a partiular account in Ganache
+web3.eth.getBalance("0x6Ae2c4e9aD0a769288e3119CD41E19ACB8E9D4D9");  This will return a promise
+
+
+*THis will RETURN VALUE OF ETH IN TERMS OF WEI
+web3.eth.getBalance("0x6Ae2c4e9aD0a769288e3119CD41E19ACB8E9D4D9").then(console.log);
+
+
+*TO GET OUTPUT IN ETH
+web3.eth.getBalance("0x6Ae2c4e9aD0a769288e3119CD41E19ACB8E9D4D9").then(function(result){console.log(web3.utils.fromWei(result,"ether"));});
+
+
+*To transfer eth from one account to another
+
+web3.eth.sendTransaction({from:"0x6Ae2c4e9aD0a769288e3119CD41E19ACB8E9D4D9",to:"0x0C460c60B00EB4a12349692E51F666bC80a860C1",value:web3.utils.toWei("5","ether")});
+
+
+
+
+*******TO CONNECT WITH CONTRACT************
+ 
+*Creating an instance of the deployed contract.
+let contract = new web3.eth.Contract(pASTE ABI
+
+put a comma after pasting the ABI and then paste the contract address.
+,"0x8c7B8577cf400E353193e1B1b19C14b31a525035");
+
+
+*To access the read functions of the contract.
+Here we're accessing the automatically created getter function of the public variable 'x'.
+
+contract.methods.x().call().then(console.log);
+
+
+*To set the value we will call the set function
+contract.methods.set(90).send({from:"0x6Ae2c4e9aD0a769288e3119CD41E19ACB8E9D4D9"});
+
+
+
+
+*******BROWSER INTERACTION WITH THE SMART CONTRACT ************
+
+Create a new file in Web1 folder named index.html
+
+Then install a package to enable browser interaction	
+npm install web3.js-browser
+
+import the package in the html file as it is a JS file.
+<html>
+    <head>
+        <script scr="node_modules/web3.js-browser/build/web3.js"></script>
+    </head>
+</html>
+
+open console and write Web3, it will return an object.
+
+Now we can create Web 3 object in console.
+let web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545"));
+
+*To get all the accounts from Ganache
+web3.eth.getAccounts().then(console.log);
+
+
+
